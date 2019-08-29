@@ -23,6 +23,10 @@ yum update -y
 package-cleanup --oldkernels --count=1
 yum clean all
 
+# Password-less sudo
+sed -i 's/\s*\(%wheel\s\+ALL=(ALL)\s*ALL\)/# \1/' /etc/sudoers
+sed -i 's/^#\s*\(%wheel\s*ALL=(ALL)\s*NOPASSWD:\s*ALL\)/\1/' /etc/sudoers
+
 # Network interface cleanup
 rm -f /etc/udev/rules.d/70*
 sed -i '/^(HWADDR|UUID)=/d' /etc/sysconfig/network-scripts/ifcfg-ens192
