@@ -54,8 +54,7 @@
       ],
 
       "iso_urls": [
-        "http://mirrors.ircam.fr/pub/CentOS/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso",
-        "http://mirror.in2p3.fr/linux/CentOS/7.6.1810/isos/x86_64/CentOS-7-x86_64-Minimal-1810.iso"
+        "http://centos.mirrors.proxad.net/7.7.1908/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso"
       ],
       "iso_checksum_url": "https://mirror.umd.edu/centos/7/isos/x86_64/sha256sum.txt",
       "iso_checksum_type": "sha256",
