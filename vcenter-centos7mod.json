@@ -3,6 +3,7 @@
     "vcenter_host": "{{ env `VCENTER_HOST` }}",
     "vcenter_user": "{{ env `VCENTER_USER` }}",
     "vcenter_password": "{{ env `VCENTER_PASSWORD` }}",
+    "ks_mod": "-{{ env `KS_MOD` }}",
     "ssh_user": "root",
     "ssh_password": "root",
     "dc": "Home",
@@ -47,10 +48,11 @@
       "shutdown_command": "sys-unconfig",
 
       "floppy_files": [
-        "kickstart/ks.cfg"
+        "kickstart/ks.cfg",
+        "kickstart/ks{{ user `ks_mod` }}.cfg"
       ],
       "boot_command": [
-        "<tab> text inst.ks=hd:fd0:/ks.cfg<enter><wait>"
+        "<tab> text inst.ks=hd:fd0:/ks{{ user `ks_mod` }}.cfg<enter><wait>"
       ],
 
       "iso_urls": [
