@@ -50,9 +50,9 @@
       ],
 
       "iso_urls": [
-        "http://miroir.univ-paris13.fr/centos/8/isos/x86_64/CentOS-8.1.1911-x86_64-boot.iso"
+        "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CentOS-8.1.1911-x86_64-boot.iso"
       ],
-      "iso_checksum_url": "http://miroir.univ-paris13.fr/centos/8/isos/x86_64/CHECKSUM",
+      "iso_checksum_url": "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CHECKSUM",
       "iso_checksum_type": "sha256",
       "boot_order": "disk,cdrom",
       "convert_to_template": true
