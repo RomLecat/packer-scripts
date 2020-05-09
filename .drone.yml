@@ -30,7 +30,7 @@ steps:
     source: kickstart/*
     strip_prefix: kickstart/
     target: /kickstarts
-    acl: public
+    acl: public-read
 
 - name: build centos 7
   image: hashicorp/packer:light
