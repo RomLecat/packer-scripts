@@ -28,6 +28,7 @@ steps:
     secret_key:
       from_secret: s3_secret_key
     source: kickstart/*
+    strip_prefix: kickstart/
     target: /kickstarts
     acl: public
 
