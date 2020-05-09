@@ -8,7 +8,7 @@
     "dc": "Home",
     "cluster": "Homelab",
     "network": "SECURE",
-    "storage": "esxi02-spin",
+    "storage": "san",
     "template_dir": "templates",
     "cpu_cores": "1",
     "ram_mb": "2048"
