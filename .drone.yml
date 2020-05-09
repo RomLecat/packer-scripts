@@ -58,4 +58,4 @@ steps:
   commands:
     - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
     - packer build vcenter-centos8.json
-  depends_on: [ 'check syntax' ]
+  depends_on: [ 'check syntax', 'upload kickstart' ]
