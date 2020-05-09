@@ -3,7 +3,7 @@ kind: pipeline
 name: default
 
 steps:
-- name: check_syntax
+- name: check syntax
   image: hashicorp/packer:light
   environment:
     VCENTER_HOST:
@@ -17,3 +17,18 @@ steps:
     - packer validate vcenter-centos7.json
     - packer validate vcenter-centos7mod.json
     - packer validate vcenter-centos8.json
+
+- name: build images
+  image: hashicorp/packer:light
+  environment:
+    VCENTER_HOST:
+      from_secret: vcenter_host
+    VCENTER_USER:
+      from_secret: vcenter_user
+    VCENTER_PASSWORD:
+      from_secret: vcenter_password
+  commands:
+    - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
+    - packer build vcenter-centos7.json
+    - packer build vcenter-centos7mod.json
+    - packer build vcenter-centos8.json
