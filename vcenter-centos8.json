@@ -44,9 +44,8 @@
       "disk_thin_provisioned": true,
       "folder": "{{ user `template_dir` }}",
 
-      "http_directory": "kickstart",
       "boot_command": [
-        "<tab> text inst.ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks8.cfg<enter><wait>"
+        "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstarts/ks8.cfg<enter><wait>"
       ],
 
       "iso_urls": [
@@ -54,8 +53,6 @@
       ],
       "iso_checksum_url": "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CHECKSUM",
       "iso_checksum_type": "sha256",
-      "http_port_min": 8080,
-      "http_port_max": 8080,
       "boot_order": "disk,cdrom",
       "convert_to_template": true
     }

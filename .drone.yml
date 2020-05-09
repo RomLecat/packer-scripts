@@ -18,6 +18,19 @@ steps:
     - packer validate vcenter-centos7mod.json
     - packer validate vcenter-centos8.json
 
+- name: upload kickstart
+  image: plugins/s3
+  settings:
+    endpoint: https://s3.lecat.pro
+    bucket: tmp
+    access_key:
+      from_secret: s3_access_key
+    secret_key:
+      from_secret: s3_secret_key
+    source: kickstart/*
+    target: /kickstarts
+    acl: public
+
 - name: build centos 7
   image: hashicorp/packer:light
   environment:
