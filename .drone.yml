@@ -18,7 +18,7 @@ steps:
     - packer validate vcenter-centos7mod.json
     - packer validate vcenter-centos8.json
 
-- name: build images
+- name: build centos 7
   image: hashicorp/packer:light
   environment:
     VCENTER_HOST:
@@ -30,5 +30,18 @@ steps:
   commands:
     - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
     - packer build vcenter-centos7.json
-    - packer build vcenter-centos7mod.json
+  depends_on: [ 'check syntax' ]
+
+- name: build centos 8
+  image: hashicorp/packer:light
+  environment:
+    VCENTER_HOST:
+      from_secret: vcenter_host
+    VCENTER_USER:
+      from_secret: vcenter_user
+    VCENTER_PASSWORD:
+      from_secret: vcenter_password
+  commands:
+    - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
     - packer build vcenter-centos8.json
+  depends_on: [ 'check syntax' ]
