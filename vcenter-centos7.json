@@ -46,11 +46,8 @@
 
       "shutdown_command": "sys-unconfig",
 
-      "floppy_files": [
-        "kickstart/ks.cfg"
-      ],
       "boot_command": [
-        "<tab> text inst.ks=hd:fd0:/ks.cfg<enter><wait>"
+        "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstarts/ks.cfg<enter><wait>"
       ],
 
       "iso_urls": [
