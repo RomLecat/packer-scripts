@@ -47,10 +47,6 @@
 
       "shutdown_command": "sys-unconfig",
 
-      "floppy_files": [
-        "kickstart/ks.cfg",
-        "kickstart/ks{{ user `ks_mod` }}.cfg"
-      ],
       "boot_command": [
         "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstarts/ks{{ user `ks_mod` }}.cfg<enter><wait>"
       ],
