@@ -49,7 +49,7 @@
       ],
 
       "iso_urls": [
-        "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CentOS-8.1.1911-x86_64-boot.iso"
+        "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso"
       ],
       "iso_checksum_url": "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CHECKSUM",
       "iso_checksum_type": "sha256",
