@@ -42,7 +42,6 @@ steps:
     VCENTER_PASSWORD:
       from_secret: vcenter_password
   commands:
-    - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
     - packer build vcenter-centos7.json
   depends_on: [ 'check syntax' ]
 
@@ -57,7 +56,6 @@ steps:
       from_secret: vcenter_password
     KS_MOD: kernel-ml
   commands:
-    - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
     - packer build vcenter-centos7mod.json
   depends_on: [ 'check syntax' ]
 
@@ -72,7 +70,6 @@ steps:
       from_secret: vcenter_password
     KS_MOD: kernel-ml-aufs
   commands:
-    - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
     - packer build vcenter-centos7mod.json
   depends_on: [ 'check syntax' ]
 
@@ -86,6 +83,5 @@ steps:
     VCENTER_PASSWORD:
       from_secret: vcenter_password
   commands:
-    - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
     - packer build vcenter-centos8.json
   depends_on: [ 'check syntax', 'upload kickstart' ]

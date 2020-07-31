@@ -1,70 +1,67 @@
 {
-  "variables": {
-    "vcenter_host": "{{ env `VCENTER_HOST` }}",
-    "vcenter_user": "{{ env `VCENTER_USER` }}",
-    "vcenter_password": "{{ env `VCENTER_PASSWORD` }}",
-    "ssh_user": "root",
-    "ssh_password": "root",
-    "dc": "Home",
-    "cluster": "Main",
-    "network": "SEC-PROVI",
-    "storage": "san",
-    "template_dir": "templates",
-    "cpu_cores": "1",
-    "ram_mb": "2048"
-  },
-
-  "builders": [
-    {
-      "type": "vsphere-iso",
-
-      "vcenter_server": "{{ user `vcenter_host` }}",
-      "username": "{{ user `vcenter_user` }}",
-      "password": "{{ user `vcenter_password` }}",
-      "insecure_connection": "true",
-      "ssh_username": "{{ user `ssh_user` }}",
-      "ssh_password": "{{ user `ssh_password` }}",
-
-      "vm_version": "13",
-
-      "datacenter": "{{ user `dc` }}",
-      "cluster": "{{ user `cluster` }}",
-      "network": "{{ user `network` }}",
-      "network_card": "vmxnet3",
-      "datastore": "{{ user `storage` }}",
-      "vm_name": "CentOS-7{{ user `ks_mod` }}-{{isotime \"2006-01-02\"}}",
-      "guest_os_type": "centos7_64Guest",
-
-      "CPUs": "{{ user `cpu_cores` }}",
-      "RAM": "{{ user `ram_mb` }}",
-      "RAM_reserve_all": true,
-
-      "disk_controller_type": "pvscsi",
-      "disk_size": "10000",
-      "disk_thin_provisioned": true,
-      "folder": "{{ user `template_dir` }}",
-
-      "shutdown_command": "sys-unconfig",
-
-      "boot_command": [
-        "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstarts/ks.cfg<enter><wait>"
-      ],
-
-      "iso_urls": [
-        "https://mirrors.ircam.fr/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso"
-      ],
-      "iso_checksum_url": "https://mirrors.ircam.fr/pub/CentOS/7/isos/x86_64/sha256sum.txt",
-      "iso_checksum_type": "sha256",
-      "boot_order": "disk,cdrom",
-      "convert_to_template": true
+    "builders": [
+        {
+            "CPUs": "{{ user `cpu_cores` }}",
+            "RAM": "{{ user `ram_mb` }}",
+            "RAM_reserve_all": true,
+            "boot_command": [
+                "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstarts/ks.cfg<enter><wait>"
+            ],
+            "boot_order": "disk,cdrom",
+            "cluster": "{{ user `cluster` }}",
+            "convert_to_template": true,
+            "datacenter": "{{ user `dc` }}",
+            "datastore": "{{ user `storage` }}",
+            "disk_controller_type": "pvscsi",
+            "folder": "{{ user `template_dir` }}",
+            "guest_os_type": "centos7_64Guest",
+            "insecure_connection": "true",
+            "iso_checksum": "file:https://mirrors.ircam.fr/pub/CentOS/7/isos/x86_64/sha256sum.txt",
+            "iso_urls": [
+                "https://mirrors.ircam.fr/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso"
+            ],
+            "network_adapters": [
+                {
+                    "network": "{{ user `network` }}",
+                    "network_card": "vmxnet3"
+                }
+            ],
+            "password": "{{ user `vcenter_password` }}",
+            "shutdown_command": "sys-unconfig",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_username": "{{ user `ssh_user` }}",
+            "storage": [
+                {
+                    "disk_size": "10000",
+                    "disk_thin_provisioned": true
+                }
+            ],
+            "type": "vsphere-iso",
+            "username": "{{ user `vcenter_user` }}",
+            "vcenter_server": "{{ user `vcenter_host` }}",
+            "vm_name": "CentOS-7{{ user `ks_mod` }}-{{isotime \"2006-01-02\"}}",
+            "vm_version": "13"
+        }
+    ],
+    "provisioners": [
+        {
+            "execute_command": "echo 'root' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+            "script": "scripts/prep_centos7.sh",
+            "type": "shell"
+        }
+    ],
+    "variables": {
+        "cluster": "Main",
+        "cpu_cores": "1",
+        "dc": "Home",
+        "network": "SEC-PROVI",
+        "ram_mb": "2048",
+        "ssh_password": "root",
+        "ssh_user": "root",
+        "storage": "san",
+        "template_dir": "templates",
+        "vcenter_host": "{{ env `VCENTER_HOST` }}",
+        "vcenter_password": "{{ env `VCENTER_PASSWORD` }}",
+        "vcenter_user": "{{ env `VCENTER_USER` }}"
     }
-  ],
-
-  "provisioners": [
-    {
-      "type": "shell",
-      "execute_command": "echo 'root' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-      "script": "scripts/prep_centos7.sh"
-    }
-  ]
 }
