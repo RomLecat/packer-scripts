@@ -39,7 +39,7 @@
             "type": "vsphere-iso",
             "username": "{{ user `vcenter_user` }}",
             "vcenter_server": "{{ user `vcenter_host` }}",
-            "vm_name": "CentOS-7{{ user `ks_mod` }}-{{isotime \"2006-01-02\"}}",
+            "vm_name": "CentOS-7-{{isotime \"2006-01-02\"}}",
             "vm_version": "13"
         }
     ],
