@@ -24,9 +24,5 @@ apt clean -y
 sed -i 's/\s*\(%sudo\s\+ALL=(ALL)\s*ALL\)/# \1/' /etc/sudoers
 sed -i 's/^#\s*\(%sudo\s*ALL=(ALL)\s*NOPASSWD:\s*ALL\)/\1/' /etc/sudoers
 
-# SSH Cleanup
-rm -f /etc/ssh/*key*
-history -c
-
 # Sysprep
 cat /dev/null > /etc/machine-id
