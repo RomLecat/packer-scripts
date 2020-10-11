@@ -1,0 +1,66 @@
+{
+    "builders": [
+        {
+            "type": "vsphere-iso",
+            "CPUs": "{{ user `cpu_cores` }}",
+            "RAM": "{{ user `ram_mb` }}",
+            "RAM_reserve_all": true,
+            "boot_command": [
+                "<esc><wait>auto preseed/url=https://s3.lecat.pro/tmp/kickstarts/debian10.cfg<wait><enter>"
+            ],
+            "boot_order": "disk,cdrom",
+            "cluster": "{{ user `cluster` }}",
+            "convert_to_template": true,
+            "datacenter": "{{ user `dc` }}",
+            "datastore": "{{ user `storage` }}",
+            "disk_controller_type": "pvscsi",
+            "folder": "{{ user `template_dir` }}",
+            "guest_os_type": "debian10_64Guest",
+            "insecure_connection": "true",
+            "iso_checksum": "2af8f43d4a7ab852151a7f630ba596572213e17d3579400b5648eba4cc974ed0",
+            "iso_urls": [
+                "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.6.0-amd64-netinst.iso"
+            ],
+            "network_adapters": [
+                {
+                    "network": "{{ user `network` }}",
+                    "network_card": "vmxnet3"
+                }
+            ],
+            "password": "{{ user `vcenter_password` }}",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_username": "{{ user `ssh_user` }}",
+            "storage": [
+                {
+                    "disk_size": "10000",
+                    "disk_thin_provisioned": true
+                }
+            ],
+            "username": "{{ user `vcenter_user` }}",
+            "vcenter_server": "{{ user `vcenter_host` }}",
+            "vm_name": "Debian-10-{{isotime \"2006-01-02\"}}",
+            "vm_version": "13"
+        }
+    ],
+    "provisioners": [
+        {
+            "execute_command": "echo 'root' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+            "script": "scripts/prep_debian10.sh",
+            "type": "shell"
+        }
+    ],
+    "variables": {
+        "cluster": "Main",
+        "cpu_cores": "1",
+        "dc": "Home",
+        "network": "SEC-PROVI",
+        "ram_mb": "2048",
+        "ssh_password": "root",
+        "ssh_user": "root",
+        "storage": "san",
+        "template_dir": "templates",
+        "vcenter_host": "{{ env `VCENTER_HOST` }}",
+        "vcenter_password": "{{ env `VCENTER_PASSWORD` }}",
+        "vcenter_user": "{{ env `VCENTER_USER` }}"
+    }
+}
