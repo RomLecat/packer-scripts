@@ -15,8 +15,8 @@ steps:
   commands:
     - wget https://github.com/jetbrains-infra/packer-builder-vsphere/releases/download/v2.3/packer-builder-vsphere-iso.linux
     - packer validate vcenter-centos7.json
-    - packer validate vcenter-centos7mod.json
     - packer validate vcenter-centos8.json
+    - packer validate vcenter-debian10.json
 
 - name: upload kickstart
   image: plugins/s3
