@@ -45,34 +45,6 @@ steps:
     - packer build vcenter-centos7.json
   depends_on: [ 'check syntax' ]
 
-- name: build centos7 kernel ml
-  image: hashicorp/packer:light
-  environment:
-    VCENTER_HOST:
-      from_secret: vcenter_host
-    VCENTER_USER:
-      from_secret: vcenter_user
-    VCENTER_PASSWORD:
-      from_secret: vcenter_password
-    KS_MOD: kernel-ml
-  commands:
-    - packer build vcenter-centos7mod.json
-  depends_on: [ 'check syntax' ]
-
-- name: build centos7 kernel ml aufs
-  image: hashicorp/packer:light
-  environment:
-    VCENTER_HOST:
-      from_secret: vcenter_host
-    VCENTER_USER:
-      from_secret: vcenter_user
-    VCENTER_PASSWORD:
-      from_secret: vcenter_password
-    KS_MOD: kernel-ml-aufs
-  commands:
-    - packer build vcenter-centos7mod.json
-  depends_on: [ 'check syntax' ]
-
 - name: build centos8
   image: hashicorp/packer:light
   environment:
