@@ -1,0 +1,35 @@
+stages:
+  - preparation
+  - build
+
+upload_ks:
+  image:
+    name: minio/mc
+    entrypoint: [""]
+  stage: preparation
+  script:
+    - mc alias set s3 https://s3.lecat.pro $S3_ACCESS_KEY $S3_SECRET_KEY --api S3v4
+    - mc cp ./kickstart s3/tmp/kickstart
+
+check_conf:
+  image: hashicorp/packer:light
+  stage: preparation
+  script:
+    - packer validate vcenter-centos7.json
+    - packer validate vcenter-centos8.json
+    - packer validate vcenter-debian10.json
+
+build_centos7:
+  image: hashicorp/packer:light
+  stage: build
+  script: packer build vcenter-centos7.json
+
+build_centos8:
+  image: hashicorp/packer:light
+  stage: build
+  script: packer build vcenter-centos8.json
+
+build_debian10:
+  image: hashicorp/packer:light
+  stage: build
+  script: packer build vcenter-debian10.json
