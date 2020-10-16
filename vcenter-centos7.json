@@ -5,7 +5,7 @@
             "RAM": "{{ user `ram_mb` }}",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstarts/ks.cfg<enter><wait>"
+                "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstart/ks.cfg<enter><wait>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",

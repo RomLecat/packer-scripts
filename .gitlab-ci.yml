@@ -9,7 +9,7 @@ upload_ks:
   stage: preparation
   script:
     - mc alias set s3 https://s3.lecat.pro $S3_ACCESS_KEY $S3_SECRET_KEY --api S3v4
-    - mc cp -r ./kickstart s3/tmp/kickstart
+    - mc mirror --remove ./kickstart s3/tmp/kickstart
 
 check_conf:
   image:
