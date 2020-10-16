@@ -12,7 +12,9 @@ upload_ks:
     - mc cp -r ./kickstart s3/tmp/kickstart
 
 check_conf:
-  image: hashicorp/packer:light
+  image:
+    name: hashicorp/packer:light
+    entrypoint: [""]
   stage: preparation
   script:
     - packer validate vcenter-centos7.json
@@ -20,16 +22,22 @@ check_conf:
     - packer validate vcenter-debian10.json
 
 build_centos7:
-  image: hashicorp/packer:light
+  image:
+    name: hashicorp/packer:light
+    entrypoint: [""]
   stage: build
   script: packer build vcenter-centos7.json
 
 build_centos8:
-  image: hashicorp/packer:light
+  image:
+    name: hashicorp/packer:light
+    entrypoint: [""]
   stage: build
   script: packer build vcenter-centos8.json
 
 build_debian10:
-  image: hashicorp/packer:light
+  image:
+    name: hashicorp/packer:light
+    entrypoint: [""]
   stage: build
   script: packer build vcenter-debian10.json
