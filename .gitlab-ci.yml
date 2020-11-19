@@ -25,18 +25,18 @@ build_centos7:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build vcenter-centos7.json
+  script: packer build -force vcenter-centos7.json
 
 build_centos8:
   image:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build vcenter-centos8.json
+  script: packer build -force vcenter-centos8.json
 
 build_debian10:
   image:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build vcenter-debian10.json
+  script: packer build -force vcenter-debian10.json
