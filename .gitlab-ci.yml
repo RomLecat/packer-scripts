@@ -4,12 +4,11 @@ stages:
 
 upload_ks:
   image:
-    name: minio/mc
+    name: amazon/aws-cli
     entrypoint: [""]
   stage: preparation
   script:
-    - mc alias set s3 https://s3.lecat.pro $S3_ACCESS_KEY $S3_SECRET_KEY --api S3v4
-    - mc mirror --remove --overwrite ./kickstart s3/tmp/kickstart
+    - aws --endpoint https://s3.lecat.pro s3 cp ./kickstart s3://tmp/kickstart --acl public-read --recursive
 
 check_conf:
   image:
