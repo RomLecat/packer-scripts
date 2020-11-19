@@ -18,7 +18,7 @@
             "insecure_connection": "true",
             "iso_checksum": "file:https://mirrors.ircam.fr/pub/CentOS/7/isos/x86_64/sha256sum.txt",
             "iso_urls": [
-                "https://mirrors.ircam.fr/pub/CentOS/7/isos/x86_64/CentOS-7-x86_64-Minimal-2003.iso"
+                "http://mirrors.ircam.fr/pub/CentOS/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso"
             ],
             "network_adapters": [
                 {
