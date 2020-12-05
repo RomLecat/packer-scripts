@@ -57,7 +57,7 @@
         "ram_mb": "2048",
         "ssh_password": "root",
         "ssh_user": "root",
-        "storage": "san",
+        "storage": "SAN",
         "template_dir": "templates",
         "vcenter_host": "{{ env `VCENTER_HOST` }}",
         "vcenter_password": "{{ env `VCENTER_PASSWORD` }}",
