@@ -18,7 +18,7 @@
             "insecure_connection": "true",
             "iso_checksum": "file:https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CHECKSUM",
             "iso_urls": [
-                "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CentOS-8.2.2004-x86_64-minimal.iso"
+                "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CentOS-8.3.2011-x86_64-boot.iso"
             ],
             "network_adapters": [
                 {
