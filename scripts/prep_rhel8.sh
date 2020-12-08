@@ -31,5 +31,4 @@ rm -f /etc/ssh/*key*
 history -c
 
 # Sysprep
-dnf install -y initial-setup
 cat /dev/null > /etc/machine-id
