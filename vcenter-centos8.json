@@ -5,7 +5,7 @@
             "RAM": "{{ user `ram_mb` }}",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstart/ks8.cfg<enter><wait>"
+                "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstart/rhel8.cfg<enter><wait>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",
@@ -18,7 +18,7 @@
             "insecure_connection": "true",
             "iso_checksum": "file:https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CHECKSUM",
             "iso_urls": [
-                "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CentOS-8.3.2011-x86_64-boot.iso"
+                "https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CentOS-8.3.2011-x86_64-dvd1.iso"
             ],
             "network_adapters": [
                 {
