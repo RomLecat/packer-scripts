@@ -20,6 +20,7 @@ check_conf:
     - packer validate vcenter-centos8.json
     - packer validate vcenter-rhel8.json
     - packer validate vcenter-debian10.json
+    - packer validate vcenter-oracle8.json
 
 build_centos7:
   image:
@@ -34,6 +35,13 @@ build_centos8:
     entrypoint: [""]
   stage: build
   script: packer build -force vcenter-centos8.json
+
+build_oracle8:
+  image:
+    name: hashicorp/packer:light
+    entrypoint: [""]
+  stage: build
+  script: packer build -force vcenter-oracle8.json
 
 build_rhel8:
   image:
