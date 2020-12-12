@@ -20,7 +20,6 @@ history -c
 
 # Update
 dnf update -y
-package-cleanup --oldkernels --count=1
 dnf clean all
 
 # Password-less sudo
