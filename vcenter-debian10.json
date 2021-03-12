@@ -6,7 +6,7 @@
             "RAM": "{{ user `ram_mb` }}",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<esc><wait>auto preseed/url=https://s3.lecat.pro/tmp/kickstart/debian10.cfg<wait><enter>"
+                "<esc><wait>auto preseed/url=https://oos.eu-west-2.outscale.com/homelab/packer_ks/debian10.cfg<wait><enter>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",
@@ -39,7 +39,7 @@
             "username": "{{ user `vcenter_user` }}",
             "vcenter_server": "{{ user `vcenter_host` }}",
             "vm_name": "Debian-10-{{isotime \"2006-01-02\"}}",
-            "vm_version": "13"
+            "vm_version": "15"
         }
     ],
     "provisioners": [

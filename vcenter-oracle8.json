@@ -5,7 +5,7 @@
             "RAM": "{{ user `ram_mb` }}",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<tab> text inst.ks=https://s3.lecat.pro/tmp/kickstart/rhel8.cfg<enter><wait>"
+                "<tab> text inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/rhel8.cfg<enter><wait>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",
@@ -39,7 +39,7 @@
             "username": "{{ user `vcenter_user` }}",
             "vcenter_server": "{{ user `vcenter_host` }}",
             "vm_name": "OracleLinux-8-{{isotime \"2006-01-02\"}}",
-            "vm_version": "13"
+            "vm_version": "15"
         }
     ],
     "provisioners": [

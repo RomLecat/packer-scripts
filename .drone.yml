@@ -21,15 +21,15 @@ steps:
 - name: upload kickstart
   image: plugins/s3
   settings:
-    endpoint: https://s3.lecat.pro
-    bucket: tmp
+    endpoint: https://oos.eu-west-2.outscale.com
+    bucket: homelab
     access_key:
       from_secret: s3_access_key
     secret_key:
       from_secret: s3_secret_key
     source: kickstart/*
     strip_prefix: kickstart/
-    target: /kickstarts
+    target: /packer_ks
     acl: public-read
 
 - name: build centos7

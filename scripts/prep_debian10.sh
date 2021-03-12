@@ -17,6 +17,7 @@ history -c
 
 # Update
 apt update -y
+apt purge -y cloud-init
 apt upgrade -y
 apt clean -y
 
