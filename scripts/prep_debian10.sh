@@ -27,3 +27,4 @@ sed -i 's/^#\s*\(%sudo\s*ALL=(ALL)\s*NOPASSWD:\s*ALL\)/\1/' /etc/sudoers
 
 # Sysprep
 cat /dev/null > /etc/machine-id
+cloud-init clean --logs

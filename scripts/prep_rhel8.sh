@@ -32,3 +32,4 @@ history -c
 
 # Sysprep
 cat /dev/null > /etc/machine-id
+cloud-init clean --logs

@@ -40,3 +40,4 @@ yum install -y initial-setup
 easy_install six
 hostnamectl set-hostname localhost.localdomain
 cat /dev/null > /etc/machine-id
+cloud-init clean --logs
