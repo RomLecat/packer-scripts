@@ -14,7 +14,7 @@
             "datastore": "{{ user `storage` }}",
             "disk_controller_type": "pvscsi",
             "folder": "{{ user `template_dir` }}",
-            "guest_os_type": "centos7_64Guest",
+            "guest_os_type": "centos8_64Guest",
             "insecure_connection": "true",
             "iso_checksum": "file:https://linux.oracle.com/security/gpg/checksum/OracleLinux-R8-U3-Server-x86_64.checksum",
             "iso_urls": [

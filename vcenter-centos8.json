@@ -14,7 +14,7 @@
             "datastore": "{{ user `storage` }}",
             "disk_controller_type": "pvscsi",
             "folder": "{{ user `template_dir` }}",
-            "guest_os_type": "centos7_64Guest",
+            "guest_os_type": "centos8_64Guest",
             "insecure_connection": "true",
             "iso_checksum": "file:https://mirrors.ircam.fr/pub/CentOS/8/isos/x86_64/CHECKSUM",
             "iso_urls": [
