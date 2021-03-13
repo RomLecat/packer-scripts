@@ -5,7 +5,7 @@
             "RAM": "{{ user `ram_mb` }}",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<tab> text inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/rhel8.cfg<enter><wait>"
+                "<up><wait>e<wait><down><wait><down><wait><end> initrd=initrd.img inst.text inst.gpt inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/rhel8.cfg <leftCtrlOn>x<leftCtrlOff>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",

@@ -7,14 +7,11 @@
             "RAM_reserve_all": true,
             "boot_wait": "5s",
             "boot_command": [
-                "<esc><esc><esc>",
-                "<enter><wait>",
-                "/casper/vmlinuz ",
-                "root=/dev/sr0 ",
-                "initrd=/casper/initrd ",
-                "autoinstall ",
-                "ds=nocloud-net;s=https://oos.eu-west-2.outscale.com/homelab/packer_ks/ubuntu2004/",
-                "<enter>"
+                "<esc><wait>",
+                "<esc><wait>",
+                "linux /casper/vmlinuz --- autoinstall ds=\"nocloud-net;s=https://oos.eu-west-2.outscale.com/homelab/packer_ks/ubuntu2004/\"<enter><wait>",
+                "initrd /casper/initrd<enter><wait>",
+                "boot<enter>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",
@@ -28,7 +25,7 @@
             "insecure_connection": "true",
             "iso_checksum": "file:https://releases.ubuntu.com/focal/SHA256SUMS",
             "iso_urls": [
-                "https://releases.ubuntu.com/focal/ubuntu-20.04.1-live-server-amd64.iso"
+                "https://releases.ubuntu.com/focal/ubuntu-20.04.2-live-server-amd64.iso"
             ],
             "network_adapters": [
                 {
@@ -50,7 +47,7 @@
             "username": "{{ user `vcenter_user` }}",
             "vcenter_server": "{{ user `vcenter_host` }}",
             "vm_name": "Ubuntu-20.04-{{isotime \"2006-01-02\"}}",
-            "vm_version": "13"
+            "vm_version": "15"
         }
     ],
     "provisioners": [

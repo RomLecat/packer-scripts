@@ -5,7 +5,7 @@
             "RAM": "{{ user `ram_mb` }}",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<tab> text inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/ks-fedora.cfg<enter><wait>"
+                "<up><wait>e<wait><down><wait><down><wait><end> initrd=initrd.img inst.text inst.gpt inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/ks-fedora.cfg <leftCtrlOn>x<leftCtrlOff>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",
@@ -40,7 +40,7 @@
             "username": "{{ user `vcenter_user` }}",
             "vcenter_server": "{{ user `vcenter_host` }}",
             "vm_name": "Fedora-33-{{isotime \"2006-01-02\"}}",
-            "vm_version": "13"
+            "vm_version": "15"
         }
     ],
     "provisioners": [
