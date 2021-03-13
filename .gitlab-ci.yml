@@ -19,7 +19,7 @@ check_conf:
     - packer validate vcenter-centos7.json
     - packer validate vcenter-centos8.json
     - packer validate vcenter-rhel8.json
-    - packer validate vcenter-debian10.json
+    - packer validate vcenter-ubuntu2004.json
     - packer validate vcenter-oracle8.json
 
 build_centos7:
@@ -50,9 +50,9 @@ build_rhel8:
   stage: build
   script: packer build -force vcenter-rhel8.json
 
-build_debian10:
+build_ubuntu20:
   image:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build -force vcenter-debian10.json
+  script: packer build -force vcenter-ubuntu2004.json
