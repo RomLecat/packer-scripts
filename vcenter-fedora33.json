@@ -13,6 +13,7 @@
             "datacenter": "{{ user `dc` }}",
             "datastore": "{{ user `storage` }}",
             "disk_controller_type": "pvscsi",
+            "firmware": "efi",
             "folder": "{{ user `template_dir` }}",
             "guest_os_type": "fedora64Guest",
             "insecure_connection": "true",
