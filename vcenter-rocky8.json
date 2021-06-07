@@ -5,7 +5,7 @@
             "RAM": "{{ user `ram_mb` }}",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<up><wait>e<wait><down><wait><down><wait><end> inst.text inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/ks-fedora.cfg <leftCtrlOn>x<leftCtrlOff>"
+                "<up><wait>e<wait><down><wait><down><wait><end> initrd=initrd.img inst.text inst.gpt inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/rhel8.cfg <leftCtrlOn>x<leftCtrlOff>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",
@@ -15,11 +15,11 @@
             "disk_controller_type": "pvscsi",
             "firmware": "efi",
             "folder": "{{ user `template_dir` }}",
-            "guest_os_type": "fedora64Guest",
+            "guest_os_type": "centos8_64Guest",
             "insecure_connection": "true",
-            "iso_checksum": "file:https://getfedora.org/static/checksums/Fedora-Server-33-1.2-x86_64-CHECKSUM",
+            "iso_checksum": "file:https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/CHECKSUM",
             "iso_urls": [
-                "https://download.fedoraproject.org/pub/fedora/linux/releases/33/Server/x86_64/iso/Fedora-Server-dvd-x86_64-33-1.2.iso"
+                "https://download.rockylinux.org/pub/rocky/8.3/isos/x86_64/Rocky-8.3-x86_64-dvd1.iso"
             ],
             "network_adapters": [
                 {
@@ -39,7 +39,7 @@
             "type": "vsphere-iso",
             "username": "{{ user `vcenter_user` }}",
             "vcenter_server": "{{ user `vcenter_host` }}",
-            "vm_name": "Fedora-33-{{isotime \"2006-01-02\"}}",
+            "vm_name": "RockyLinux-8-{{isotime \"2006-01-02\"}}",
             "vm_version": "15"
         }
     ],
@@ -55,7 +55,7 @@
         "cpu_cores": "1",
         "dc": "Home",
         "network": "SEC-PROVI",
-        "ram_mb": "3072",
+        "ram_mb": "2048",
         "ssh_password": "root",
         "ssh_user": "root",
         "storage": "SAN",
