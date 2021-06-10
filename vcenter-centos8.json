@@ -19,7 +19,7 @@
             "insecure_connection": "true",
             "iso_checksum": "file:https://centos.quelquesmots.fr/8.4.2105/isos/x86_64/CHECKSUM",
             "iso_urls": [
-                "https://centos.quelquesmots.fr/8.4.2105/isos/x86_64/CentOS-8.4.2105-x86_64-boot.iso"
+                "https://centos.quelquesmots.fr/8/isos/x86_64/CentOS-8.4.2105-x86_64-boot.iso"
             ],
             "network_adapters": [
                 {
@@ -58,7 +58,7 @@
         "ram_mb": "2048",
         "ssh_password": "root",
         "ssh_user": "root",
-        "storage": "esxi01-ssd",
+        "storage": "SAN",
         "template_dir": "templates",
         "vcenter_host": "{{ env `VCENTER_HOST` }}",
         "vcenter_password": "{{ env `VCENTER_PASSWORD` }}",

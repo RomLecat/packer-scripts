@@ -28,8 +28,11 @@ sed -i '/^(HWADDR|UUID)=/d' /etc/sysconfig/network-scripts/ifcfg-ens192
 
 # SSH Cleanup
 rm -f /etc/ssh/*key*
-history -c
 
 # Sysprep
-cat /dev/null > /etc/machine-id
-cloud-init clean --logs
+truncate -s 0 /etc/machine-id
+cloud-init clean --logs --seed
+
+# Logs Cleanup
+history -w
+history -c

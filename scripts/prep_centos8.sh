@@ -1,40 +1,47 @@
 #!/bin/bash
+set -x
 
-# Stop logging
-systemctl stop rsyslog
-
-# Log cleanup
-logrotate -f /etc/logrotate.conf
-rm -f /var/log/*-???????? /var/log/*.gz
-rm -f /var/log/dmesg.old
-rm -rf /var/log/anaconda
-cat /dev/null > /var/log/audit/audit.log
-cat /dev/null > /var/log/wtmp
-cat /dev/null > /var/log/lastlog
-cat /dev/null > /var/log/grubby
-
-# No history
-unset HISTFILE
-rm -f ~root/.bash_history
-history -c
-
-# Update
-dnf update -y
-dnf clean all
+# Remove traces of MAC address and UUID from network configuration
+sed -E -i '/^(HWADDR|UUID)/d' /etc/sysconfig/network-scripts/ifcfg-e*
 
 # Password-less sudo
 sed -i 's/\s*\(%wheel\s\+ALL=(ALL)\s*ALL\)/# \1/' /etc/sudoers
 sed -i 's/^#\s*\(%wheel\s*ALL=(ALL)\s*NOPASSWD:\s*ALL\)/\1/' /etc/sudoers
 
-# Network interface cleanup
-rm -f /etc/udev/rules.d/70*
-sed -i '/^(HWADDR|UUID)=/d' /etc/sysconfig/network-scripts/ifcfg-ens192
+# Clean up yum
+rpm --rebuilddb
+yum clean all
 
-# SSH Cleanup
-rm -f /etc/ssh/*key*
-history -c
+# Remove ssh host keys
+rm -rf /etc/ssh/ssh_host*_key*
+
+# Clean up /root
+rm -f /root/anaconda-ks.cfg
+rm -f /root/install.log
+rm -f /root/install.log.syslog
+rm -rf /root/.pki
+
+# Clean up /var/log
+>/var/log/cron
+>/var/log/dmesg
+>/var/log/lastlog
+>/var/log/maillog
+>/var/log/messages
+>/var/log/secure
+>/var/log/wtmp
+>/var/log/audit/audit.log
+rm -f /var/log/*.old
+rm -f /var/log/*.log
+rm -f /var/log/*.syslog
+
+# Clean /tmp
+rm -rf /tmp/*
+rm -rf /tmp/*.*
 
 # Sysprep
-dnf install -y initial-setup
-cat /dev/null > /etc/machine-id
-cloud-init clean --logs
+truncate -s 0 > /etc/machine-id
+cloud-init clean --logs --seed
+
+# Clear history
+history -w
+history -c

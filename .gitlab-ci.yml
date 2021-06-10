@@ -16,18 +16,7 @@ check_conf:
     entrypoint: [""]
   stage: preparation
   script:
-    - packer validate vcenter-centos7.json
     - packer validate vcenter-centos8.json
-    - packer validate vcenter-rhel8.json
-    - packer validate vcenter-ubuntu2004.json
-    - packer validate vcenter-oracle8.json
-
-build_centos7:
-  image:
-    name: hashicorp/packer:light
-    entrypoint: [""]
-  stage: build
-  script: packer build -force vcenter-centos7.json
 
 build_centos8:
   image:
@@ -35,24 +24,3 @@ build_centos8:
     entrypoint: [""]
   stage: build
   script: packer build -force vcenter-centos8.json
-
-build_oracle8:
-  image:
-    name: hashicorp/packer:light
-    entrypoint: [""]
-  stage: build
-  script: packer build -force vcenter-oracle8.json
-
-build_rhel8:
-  image:
-    name: hashicorp/packer:light
-    entrypoint: [""]
-  stage: build
-  script: packer build -force vcenter-rhel8.json
-
-build_ubuntu20:
-  image:
-    name: hashicorp/packer:light
-    entrypoint: [""]
-  stage: build
-  script: packer build -force vcenter-ubuntu2004.json
