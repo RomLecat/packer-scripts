@@ -53,7 +53,7 @@
     "provisioners": [
         {
             "execute_command": "echo 'root' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-            "script": "scripts/prep_debian10.sh",
+            "script": "scripts/prep_ubuntu.sh",
             "type": "shell"
         }
     ],
