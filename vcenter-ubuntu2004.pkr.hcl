@@ -75,7 +75,7 @@ source "vsphere-iso" "ubuntu" {
     convert_to_template = true
     datacenter = "${var.dc}"
     datastore = "${var.storage}"
-    disk_controller_type = "pvscsi"
+    disk_controller_type = [ "pvscsi" ]
     firmware = "efi"
     folder = "${var.template_dir}"
     guest_os_type = "ubuntu64Guest"
