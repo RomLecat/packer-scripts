@@ -5,7 +5,7 @@
             "RAM": "{{ user `ram_mb` }}",
             "RAM_reserve_all": true,
             "boot_command": [
-                "<up><wait>e<wait><down><wait><down><wait><end> initrd=initrd.img inst.text inst.gpt inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/centos8.cfg <leftCtrlOn>x<leftCtrlOff>"
+                "<up><wait>e<wait><down><wait><down><wait><end> initrd=initrd.img inst.text inst.gpt inst.ks=https://oos.eu-west-2.outscale.com/homelab/packer_ks/rocky8.cfg <leftCtrlOn>x<leftCtrlOff>"
             ],
             "boot_order": "disk,cdrom",
             "cluster": "{{ user `cluster` }}",
@@ -17,9 +17,9 @@
             "folder": "{{ user `template_dir` }}",
             "guest_os_type": "centos8_64Guest",
             "insecure_connection": "true",
-            "iso_checksum": "file:https://centos.quelquesmots.fr/8.4.2105/isos/x86_64/CHECKSUM",
+            "iso_checksum": "file:https://download.rockylinux.org/pub/rocky/8/isos/x86_64/CHECKSUM",
             "iso_urls": [
-                "https://centos.quelquesmots.fr/8/isos/x86_64/CentOS-8.4.2105-x86_64-boot.iso"
+                "https://download.rockylinux.org/pub/rocky/8/isos/x86_64/Rocky-8.4-x86_64-boot.iso"
             ],
             "network_adapters": [
                 {
@@ -39,14 +39,14 @@
             "type": "vsphere-iso",
             "username": "{{ user `vcenter_user` }}",
             "vcenter_server": "{{ user `vcenter_host` }}",
-            "vm_name": "CentOS-8-{{isotime \"2006-01-02\"}}",
+            "vm_name": "RockyLinux-8-{{isotime \"2006-01-02\"}}",
             "vm_version": "15"
         }
     ],
     "provisioners": [
         {
             "execute_command": "echo 'root' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
-            "script": "scripts/prep_centos8.sh",
+            "script": "scripts/prep_rocky8.sh",
             "type": "shell"
         }
     ],
