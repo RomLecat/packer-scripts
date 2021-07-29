@@ -16,16 +16,17 @@ check_conf:
     entrypoint: [""]
   stage: preparation
   script:
-    - packer validate vcenter-centos8.json
+    - packer validate vcenter-rocky8.json
     - packer validate vcenter-rhel8.json
     - packer validate vcenter-ubuntu2004.json
+    - packer validate vcenter-windows.pkr.hcl
 
-build_centos8:
+build_rocky8:
   image:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build -force vcenter-centos8.json
+  script: packer build -force vcenter-rocky8.json
 
 build_rhel8:
   image:
@@ -40,3 +41,10 @@ build_ubuntu2004:
     entrypoint: [""]
   stage: build
   script: packer build -force vcenter-ubuntu2004.json
+
+build_windows:
+  image:
+    name: hashicorp/packer:light
+    entrypoint: [""]
+  stage: build
+  script: packer build -force vcenter-windows.pkr.hcl
