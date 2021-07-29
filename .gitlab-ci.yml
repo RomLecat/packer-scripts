@@ -16,6 +16,7 @@ check_conf:
     entrypoint: [""]
   stage: preparation
   script:
+    - packer init -upgrade vcenter-windows.pkr.hcl 
     - packer validate vcenter-rocky8.pkr.hcl
     - packer validate vcenter-rhel8.pkr.hcl
     - packer validate vcenter-ubuntu2004.pkr.hcl
