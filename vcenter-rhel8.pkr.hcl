@@ -75,7 +75,7 @@ source "vsphere-iso" "rhel" {
     guest_os_type = "rhel8_64Guest"
     insecure_connection = "true"
     iso_checksum = "sha256:30fd8dff2d29a384bd97886fa826fa5be872213c81e853eae3f9d9674f720ad0"
-    iso_urls = [ "https://s3.lecat.pro/software/iso/rhel-8.3-x86_64-dvd.iso" ]
+    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/rhel-8.4-x86_64-dvd.iso" ]
 
     network_adapters {
         network = "${var.network}"
