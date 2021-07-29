@@ -47,4 +47,6 @@ build_windows:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build -force vcenter-windows.pkr.hcl
+  script: 
+    - packer init -upgrade vcenter-windows.pkr.hcl
+    - packer build -force vcenter-windows.pkr.hcl
