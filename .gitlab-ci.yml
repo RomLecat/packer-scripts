@@ -16,9 +16,9 @@ check_conf:
     entrypoint: [""]
   stage: preparation
   script:
-    - packer validate vcenter-rocky8.json
-    - packer validate vcenter-rhel8.json
-    - packer validate vcenter-ubuntu2004.json
+    - packer validate vcenter-rocky8.pkr.hcl
+    - packer validate vcenter-rhel8.pkr.hcl
+    - packer validate vcenter-ubuntu2004.pkr.hcl
     - packer validate vcenter-windows.pkr.hcl
 
 build_rocky8:
@@ -26,21 +26,21 @@ build_rocky8:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build -force vcenter-rocky8.json
+  script: packer build -force vcenter-rocky8.pkr.hcl
 
 build_rhel8:
   image:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build -force vcenter-rhel8.json
+  script: packer build -force vcenter-rhel8.pkr.hcl
 
 build_ubuntu2004:
   image:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build -force vcenter-ubuntu2004.json
+  script: packer build -force vcenter-ubuntu2004.pkr.hcl
 
 build_windows:
   image:
