@@ -51,3 +51,12 @@ build_windows:
   script: 
     - packer init -upgrade vcenter-windows.pkr.hcl
     - packer build -force vcenter-windows.pkr.hcl
+
+build_windows10:
+  image:
+    name: hashicorp/packer:light
+    entrypoint: [""]
+  stage: build
+  script: 
+    - packer init -upgrade vcenter-windows10.pkr.hcl
+    - packer build -force vcenter-windows10.pkr.hcl

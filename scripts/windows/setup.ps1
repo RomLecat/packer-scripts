@@ -1,5 +1,10 @@
 $ErrorActionPreference = "Stop"
 
+# Supress network location Prompt
+New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force
+# Set main NIC to private
+$ifaceinfo = Get-NetConnectionProfile
+Set-NetConnectionProfile -InterfaceIndex $ifaceinfo.InterfaceIndex -NetworkCategory Private
 # Disable Windows Firewall
 Set-NetFirewallProfile -All -Enabled False
 
