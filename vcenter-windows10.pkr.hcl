@@ -104,7 +104,6 @@ source "vsphere-iso" "windows" {
     winrm_timeout = "1h30m"
     winrm_use_ssl = "true"
     winrm_insecure = "true"
-    winrm_use_ntlm = "true"
 }
 
 build {

@@ -10,8 +10,8 @@ Set-NetFirewallProfile -All -Enabled False
 
 # Enable WinRM service
 Enable-PSRemoting -SkipNetworkProfileCheck -Force
-$Cert = New-SelfSignedCertificate -CertstoreLocation Cert:\LocalMachine\My -DnsName "{ipAddress}"
-New-Item -Path WSMan:\LocalHost\Listener -Transport HTTPS -Address * -CertificateThumbPrint $Cert.Thumbprint –Force
+$Cert = New-SelfSignedCertificate -CertstoreLocation Cert:\LocalMachine\My -DnsName "packer"
+New-Item -Path WSMan:\LocalHost\Listener -Transport HTTPS -Address * -CertificateThumbPrint $Cert.Thumbprint -Hostname "packer" -Port 5986 –Force
 Set-Item -Path WSMan:\localhost\Service\Auth\Basic -Value $true
 Set-Item -Path WSMan:\localhost\Service\Auth\Certificate -Value $true
 Restart-Service -Name WinRM
