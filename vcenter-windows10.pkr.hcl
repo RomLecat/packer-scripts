@@ -99,9 +99,12 @@ source "vsphere-iso" "windows" {
     vcenter_server = "${var.vcenter_host}"
     vm_name = "Windows-${var.windows_version}-${legacy_isotime("2006-01-02")}"
     vm_version = "15"
+    winrm_username = "Administrator"
     winrm_password = "Password!"
     winrm_timeout = "1h30m"
-    winrm_username = "Administrateur"
+    winrm_use_ssl = "true"
+    winrm_insecure = "true"
+    winrm_use_ntlm = "true"
 }
 
 build {

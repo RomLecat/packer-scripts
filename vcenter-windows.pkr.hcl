@@ -50,7 +50,7 @@ variable "vcenter_user" {
 
 variable "windows_version" {
     type = string
-    default = "2019"
+    default = "2022"
 }
 
 packer {
@@ -85,7 +85,7 @@ source "vsphere-iso" "windows" {
     insecure_connection = "true"
     iso_checksum = "none"
     iso_paths = [ "[] /vmimages/tools-isoimages/windows.iso" ]
-    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/SW_DVD9_Win_Server_STD_CORE_2019_1809.17_64Bit_French_DC_STD_MLF_X22-69937.ISO" ]
+    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/en-us_windows_server_2022_x64_dvd_620d7eac.iso" ]
     network_adapters {
         network = "${var.network}"
         network_card = "vmxnet3"
@@ -99,9 +99,12 @@ source "vsphere-iso" "windows" {
     vcenter_server = "${var.vcenter_host}"
     vm_name = "WindowsServer-${var.windows_version}-${legacy_isotime("2006-01-02")}"
     vm_version = "15"
+    winrm_username = "Administrator"
     winrm_password = "Password!"
     winrm_timeout = "1h30m"
-    winrm_username = "Administrateur"
+    winrm_use_ssl = "true"
+    winrm_insecure = "true"
+    winrm_use_ntlm = "true"
 }
 
 build {
