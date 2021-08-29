@@ -81,7 +81,7 @@ source "vsphere-iso" "ubuntu" {
     guest_os_type = "ubuntu64Guest"
     insecure_connection = "true"
     iso_checksum = "file:https://releases.ubuntu.com/focal/SHA256SUMS"
-    iso_urls = [ "https://releases.ubuntu.com/focal/ubuntu-20.04.2-live-server-amd64.iso" ]
+    iso_urls = [ "https://releases.ubuntu.com/focal/ubuntu-20.04.3-live-server-amd64.iso" ]
 
     network_adapters {
         network = "${var.network}"
