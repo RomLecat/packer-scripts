@@ -21,6 +21,7 @@ check_conf:
     - packer validate vcenter-rhel8.pkr.hcl
     - packer validate vcenter-ubuntu2004.pkr.hcl
     - packer validate vcenter-windows.pkr.hcl
+    - packer validate vcenter-windows10.pkr.hcl
 
 build_rocky8:
   image:
