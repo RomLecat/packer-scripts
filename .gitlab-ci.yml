@@ -28,6 +28,8 @@ build_rocky8:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
+  only:
+    - master
   script: packer build -force vcenter-rocky8.pkr.hcl
 
 build_rhel8:
@@ -35,6 +37,8 @@ build_rhel8:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
+  only:
+    - master
   script: packer build -force vcenter-rhel8.pkr.hcl
 
 build_ubuntu2004:
@@ -42,6 +46,8 @@ build_ubuntu2004:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
+  only:
+    - master
   script: packer build -force vcenter-ubuntu2004.pkr.hcl
 
 build_windows:
@@ -49,6 +55,8 @@ build_windows:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
+  only:
+    - master
   script: 
     - packer init -upgrade vcenter-windows.pkr.hcl
     - packer build -force vcenter-windows.pkr.hcl
@@ -58,6 +66,8 @@ build_windows10:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
+  only:
+    - master
   script: 
     - packer init -upgrade vcenter-windows11.pkr.hcl
     - packer build -force vcenter-windows11.pkr.hcl
