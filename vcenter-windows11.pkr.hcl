@@ -50,7 +50,7 @@ variable "vcenter_user" {
 
 variable "windows_version" {
     type = string
-    default = "10"
+    default = "11"
 }
 
 packer {
@@ -85,7 +85,7 @@ source "vsphere-iso" "windows" {
     insecure_connection = "true"
     iso_checksum = "none"
     iso_paths = [ "[] /vmimages/tools-isoimages/windows.iso" ]
-    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/Win10_21H1_French_x64.iso" ]
+    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/Win11_French_x64.iso" ]
     network_adapters {
         network = "${var.network}"
         network_card = "vmxnet3"
