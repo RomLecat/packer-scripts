@@ -18,7 +18,7 @@ check_conf:
   script:
     - packer init -upgrade vcenter-windows.pkr.hcl 
     - packer validate vcenter-rocky8.pkr.hcl
-    - packer validate vcenter-rhel8.pkr.hcl
+    - packer validate vcenter-arch.pkr.hcl
     - packer validate vcenter-ubuntu2004.pkr.hcl
     - packer validate vcenter-windows.pkr.hcl
     - packer validate vcenter-windows10.pkr.hcl
@@ -32,14 +32,14 @@ build_rocky8:
     - master
   script: packer build -force vcenter-rocky8.pkr.hcl
 
-build_rhel8:
+build_arch:
   image:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
   only:
     - master
-  script: packer build -force vcenter-rhel8.pkr.hcl
+  script: packer build -force vcenter-arch.pkr.hcl
 
 build_ubuntu2004:
   image:
