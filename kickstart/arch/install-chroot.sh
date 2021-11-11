@@ -27,9 +27,21 @@ grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchL
 sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=0/' /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
+# Setup network interface
+cat <<EOF > /etc/systemd/network/ens160.network
+[Match]
+Name=ens160
+
+[Link]
+MTUBytes=1500
+
+[Network]
+DHCP=yes
+IPv6LinkLocalAddressGenerationMode=eui64
+EOF
+
 # Enable network and SSH
 systemctl enable systemd-networkd
 systemctl enable systemd-resolved
 systemctl enable sshd
-systemctl enable dhcpcd
 systemctl enable vmtoolsd
