@@ -66,7 +66,7 @@ source "vsphere-iso" "arch" {
     boot_command = [
         "<enter><wait10><wait10><wait10><wait10><wait10>",
         "curl -O 'https://oos.eu-west-2.outscale.com/homelab/packer_ks/arch/install{,-chroot}.sh'<enter><wait>",
-        "bash install.sh < install-chroot.sh && systemctl reboot<enter>"
+        "bash install.sh < install-chroot.sh && poweroff<enter>"
     ]
     boot_order = "disk,cdrom"
     cluster = "${var.cluster}"
@@ -77,8 +77,10 @@ source "vsphere-iso" "arch" {
     folder = "${var.template_dir}"
     guest_os_type = "other4xLinux64Guest"
     insecure_connection = "true"
+    communicator = "none"
     iso_checksum = "file:http://archlinux.mirrors.ovh.net/archlinux/iso/2021.10.01/sha1sums.txt"
     iso_urls = [ "http://archlinux.mirrors.ovh.net/archlinux/iso/2021.10.01/archlinux-2021.10.01-x86_64.iso" ]
+    disable_shutdown = "true"
 
     network_adapters {
         network = "${var.network}"
