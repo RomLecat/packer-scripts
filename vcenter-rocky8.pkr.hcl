@@ -75,7 +75,7 @@ source "vsphere-iso" "rocky" {
     guest_os_type = "centos8_64Guest"
     insecure_connection = "true"
     iso_checksum = "file:https://download.rockylinux.org/pub/rocky/8/isos/x86_64/CHECKSUM"
-    iso_urls = [ "https://download.rockylinux.org/pub/rocky/8/isos/x86_64/Rocky-8.4-x86_64-boot.iso" ]
+    iso_urls = [ "https://download.rockylinux.org/pub/rocky/8/isos/x86_64/Rocky-8.5-x86_64-boot.iso" ]
 
     network_adapters {
         network = "${var.network}"
