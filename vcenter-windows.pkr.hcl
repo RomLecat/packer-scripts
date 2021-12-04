@@ -109,7 +109,9 @@ source "vsphere-iso" "windows" {
 build {
     sources = [ "source.vsphere-iso.windows" ]
 
-    provisioner "windows-update" { }
+    provisioner "windows-update" { 
+        timeout = "3h"
+    }
 
     provisioner "powershell" {
         scripts = [
