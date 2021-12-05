@@ -85,7 +85,7 @@ source "vsphere-iso" "windows" {
     insecure_connection = "true"
     iso_checksum = "none"
     iso_paths = [ "[] /vmimages/tools-isoimages/windows.iso" ]
-    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/en-us_windows_server_2022_x64_dvd_620d7eac.iso" ]
+    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/en-us_windows_server_version_2022_updated_nov_2021_x64_dvd_e9a58f14.iso" ]
     network_adapters {
         network = "${var.network}"
         network_card = "vmxnet3"
