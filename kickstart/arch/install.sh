@@ -11,10 +11,10 @@ EOF
 
 # Format and mount partitions
 mkfs.fat -F32 /dev/sda1
-mkfs.xfs /dev/sda2
+mkfs.xfs -L arch_os /dev/sda2
 mount /dev/sda2 /mnt
 mkdir -p /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
+mount /dev/sda1 /mnt/boot
 
 # Enable NTP
 timedatectl set-ntp true
@@ -23,7 +23,7 @@ timedatectl set-ntp true
 reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 # Setup base system and applications
-pacstrap /mnt base base-devel linux linux-firmware openssh sudo vim grub efibootmgr open-vm-tools xfsprogs python3 inetutils
+pacstrap /mnt base base-devel linux linux-firmware man openssh sudo vim efibootmgr open-vm-tools xfsprogs python3 inetutils
 
 # Setup fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab

@@ -23,9 +23,17 @@ echo "%sudo ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/sudo
 chmod 440 /etc/sudoers.d/sudo
 
 # Setup bootloader
-grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ArchLinux --recheck
-sed -i -e 's/^GRUB_TIMEOUT=.*$/GRUB_TIMEOUT=0/' /etc/default/grub
-grub-mkconfig -o /boot/grub/grub.cfg
+bootctl install
+cat <<EOF > /boot/loader/loader.conf
+default  arch
+timeout  0
+EOF
+cat <<EOF > /boot/loader/entries/arch.conf
+title   Arch Linux
+linux   /vmlinuz-linux
+initrd  /initramfs-linux.img
+options root="LABEL=arch_os" rw
+EOF
 
 # Setup network interface
 cat <<EOF > /etc/systemd/network/ens160.network
