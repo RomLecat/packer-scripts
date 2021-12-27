@@ -34,6 +34,7 @@ linux   /vmlinuz-linux
 initrd  /initramfs-linux.img
 options root="LABEL=arch_os" rw
 EOF
+systemctl enable systemd-boot-update
 
 # Setup network interface
 cat <<EOF > /etc/systemd/network/ens160.network
