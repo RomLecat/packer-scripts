@@ -23,7 +23,7 @@ timedatectl set-ntp true
 reflector --country France --age 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 # Setup base system and applications
-pacstrap /mnt base base-devel linux linux-firmware man openssh sudo vim efibootmgr open-vm-tools xfsprogs python3 inetutils
+pacstrap /mnt base base-devel linux linux-firmware man openssh sudo vim efibootmgr open-vm-tools xfsprogs python3 inetutils pacman-contrib
 
 # Setup fstab
 genfstab -U -p /mnt >> /mnt/etc/fstab

@@ -79,7 +79,7 @@ source "vsphere-iso" "arch" {
     insecure_connection = "true"
     communicator = "none"
     iso_checksum = "file:http://archlinux.mirrors.ovh.net/archlinux/iso/latest/sha1sums.txt"
-    iso_urls = [ "http://archlinux.mirrors.ovh.net/archlinux/iso/latest/archlinux-2021.12.01-x86_64.iso" ]
+    iso_urls = [ "http://archlinux.mirrors.ovh.net/archlinux/iso/latest/archlinux-${ formatdate("YYYY.MM", timestamp()) }.01-x86_64.iso" ]
     disable_shutdown = "true"
 
     network_adapters {
