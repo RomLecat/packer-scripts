@@ -50,7 +50,7 @@ variable "vcenter_user" {
 
 variable "windows_version" {
     type = string
-    default = "10"
+    default = "2022"
 }
 
 packer {
@@ -58,6 +58,10 @@ packer {
         windows-update = {
             source = "github.com/rgl/windows-update"
             version = ">= 0.13.0"
+        }
+        vsphere = {
+            source  = "github.com/hashicorp/vsphere"
+            version = ">= 1.0.3"
         }
     }
 }
@@ -81,11 +85,11 @@ source "vsphere-iso" "windows" {
         "scripts/windows/setup.ps1"
     ]
     folder = "${var.template_dir}"
-    guest_os_type = "windows9_64Guest"
+    guest_os_type = "windows9Server64Guest"
     insecure_connection = "true"
     iso_checksum = "none"
     iso_paths = [ "[] /vmimages/tools-isoimages/windows.iso" ]
-    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/Win10_21H1_French_x64.iso" ]
+    iso_urls = [ "https://oos.eu-west-2.outscale.com/homelab/iso/en-us_windows_server_version_2022_updated_nov_2021_x64_dvd_e9a58f14.iso" ]
     network_adapters {
         network = "${var.network}"
         network_card = "vmxnet3"
@@ -97,24 +101,27 @@ source "vsphere-iso" "windows" {
     }
     username = "${var.vcenter_user}"
     vcenter_server = "${var.vcenter_host}"
-    vm_name = "Windows-${var.windows_version}-${legacy_isotime("2006-01-02")}"
+    vm_name = "WindowsServer-${var.windows_version}-${legacy_isotime("2006-01-02")}"
     vm_version = "15"
-    winrm_username = "Administrateur"
+    winrm_username = "Administrator"
     winrm_password = "Password!"
     winrm_timeout = "1h30m"
     winrm_use_ssl = "true"
     winrm_insecure = "true"
-    winrm_use_ntlm = "true"
 }
 
 build {
     sources = [ "source.vsphere-iso.windows" ]
 
-    provisioner "windows-update" { }
+    provisioner "windows-update" { 
+        timeout = "3h"
+    }
 
     provisioner "powershell" {
         scripts = [
-            "scripts/windows/enable-rdp.ps1"
+            "scripts/windows/enable-rdp.ps1",
+            "scripts/windows/disable-server-manager.ps1",
+            "scripts/windows/disable-ie-esc.ps1"
         ]
     }
 }

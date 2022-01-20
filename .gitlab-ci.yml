@@ -17,18 +17,10 @@ check_conf:
   stage: preparation
   script:
     - packer init -upgrade vcenter-windows.pkr.hcl 
-    - packer validate vcenter-rocky8.pkr.hcl
+    - packer init -upgrade vcenter-windows-server.pkr.hcl
     - packer validate vcenter-arch.pkr.hcl
     - packer validate vcenter-windows.pkr.hcl
-
-build_rocky8:
-  image:
-    name: hashicorp/packer:light
-    entrypoint: [""]
-  stage: build
-  only:
-    - master
-  script: packer build -force vcenter-rocky8.pkr.hcl
+    - packer validate vcenter-windows-server.pkr.hcl
 
 build_arch:
   image:
@@ -38,6 +30,8 @@ build_arch:
   only:
     - master
   script: packer build -force vcenter-arch.pkr.hcl
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
 
 build_windows:
   image:
@@ -47,5 +41,7 @@ build_windows:
   only:
     - master
   script: 
-    - packer init -upgrade vcenter-windows.pkr.hcl
-    - packer build -force vcenter-windows.pkr.hcl
+    - packer init -upgrade vcenter-windows-server.pkr.hcl
+    - packer build -force vcenter-windows-server.pkr.hcl
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
