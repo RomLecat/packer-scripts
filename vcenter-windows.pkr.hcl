@@ -33,6 +33,16 @@ variable "template_dir" {
     default = "templates"
 }
 
+variable "host_type" {
+    type = string
+    default = "efi-secure"
+}
+
+variable "tpm" {
+    type = bool
+    default = true
+}
+
 variable "vcenter_host" {
     type = string
     default = "${env("VCENTER_HOST")}"
@@ -83,7 +93,7 @@ source "vsphere-iso" "windows" {
     datacenter = "${var.dc}"
     datastore = "${var.storage}"
     disk_controller_type = [ "lsilogic-sas" ]
-    firmware = "efi-secure"
+    firmware = "${var.host_type}"
     floppy_files = [ 
         "kickstart/windows${var.windows_version}/autounattend.xml",
         "scripts/windows/vmtools.cmd",
@@ -108,7 +118,7 @@ source "vsphere-iso" "windows" {
     vcenter_server = "${var.vcenter_host}"
     vm_name = "Windows-${var.windows_version}-${legacy_isotime("2006-01-02")}"
     vm_version = "15"
-    vTPM = true
+    vTPM = var.tpm
     winrm_username = "Administrator"
     winrm_password = "Password!"
     winrm_timeout = "1h30m"

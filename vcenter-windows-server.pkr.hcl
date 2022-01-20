@@ -33,6 +33,11 @@ variable "template_dir" {
     default = "templates"
 }
 
+variable "host_type" {
+    type = string
+    default = "efi-secure"
+}
+
 variable "vcenter_host" {
     type = string
     default = "${env("VCENTER_HOST")}"
@@ -78,7 +83,7 @@ source "vsphere-iso" "windows" {
     datacenter = "${var.dc}"
     datastore = "${var.storage}"
     disk_controller_type = [ "lsilogic-sas" ]
-    firmware = "efi-secure"
+    firmware = "${var.host_type}"
     floppy_files = [ 
         "kickstart/windows${var.windows_version}/autounattend.xml",
         "scripts/windows/vmtools.cmd",
