@@ -27,8 +27,6 @@ build_arch:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  only:
-    - master
   script: packer build -force vcenter-arch.pkr.hcl
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
@@ -38,8 +36,6 @@ build_windows:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  only:
-    - master
   script: 
     - packer init -upgrade vcenter-windows-server.pkr.hcl
     - packer build -force vcenter-windows-server.pkr.hcl
