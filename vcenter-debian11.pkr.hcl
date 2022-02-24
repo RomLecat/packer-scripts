@@ -3,11 +3,6 @@ variable "cluster" {
     default = "Main"
 }
 
-variable "cpu_cores" {
-    type = string
-    default = "2"
-}
-
 variable "dc" {
     type = string
     default = "Home"
@@ -16,21 +11,6 @@ variable "dc" {
 variable "network" {
     type = string
     default = "SEC-PROVI"
-}
-
-variable "ram_mb" {
-    type = string
-    default = "2048"
-}
-
-variable "ssh_password" {
-    type = string
-    default = "root"
-}
-
-variable "ssh_user" {
-    type = string
-    default = "root"
 }
 
 variable "storage" {
@@ -58,18 +38,15 @@ variable "vcenter_user" {
     default = "${env("VCENTER_USER")}"
 }
 
-source "vsphere-iso" "ubuntu" {
-    CPUs = "${var.cpu_cores}"
-    RAM = "${var.ram_mb}"
+source "vsphere-iso" "debian" {
+    CPUs = "2"
+    RAM = "2048"
     RAM_reserve_all = true
     boot_command = [ 
-        "<esc><wait>", 
-        "<esc><wait>", 
-        "linux /casper/vmlinuz --- autoinstall ds=\"nocloud-net;s=https://oos.eu-west-2.outscale.com/homelab/packer_ks/ubuntu2004/\"<enter><wait>", 
-        "initrd /casper/initrd<enter><wait>", 
-        "boot<enter>" 
+        "e<down><down><down><end>",
+        "priority=critical auto=true preseed/url=https://oos.eu-west-2.outscale.com/homelab/packer_ks/debian11/preseed.cfg",
+        "<leftCtrlOn>x<leftCtrlOff>"
     ]
-    boot_order = "disk,cdrom"
     boot_wait = "5s"
     cluster = "${var.cluster}"
     convert_to_template = true
@@ -78,10 +55,10 @@ source "vsphere-iso" "ubuntu" {
     disk_controller_type = [ "pvscsi" ]
     firmware = "efi"
     folder = "${var.template_dir}"
-    guest_os_type = "ubuntu64Guest"
+    guest_os_type = "debian10_64Guest"
     insecure_connection = "true"
-    iso_checksum = "file:https://releases.ubuntu.com/focal/SHA256SUMS"
-    iso_urls = [ "https://releases.ubuntu.com/focal/ubuntu-20.04.3-live-server-amd64.iso" ]
+    iso_checksum = "file:https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA256SUMS"
+    iso_urls = [ "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.2.0-amd64-netinst.iso" ]
 
     network_adapters {
         network = "${var.network}"
@@ -90,9 +67,9 @@ source "vsphere-iso" "ubuntu" {
 
     password = "${var.vcenter_password}"
     ssh_handshake_attempts = "150"
-    ssh_password = "${var.ssh_password}"
+    ssh_password = "root"
     ssh_timeout = "25m"
-    ssh_username = "${var.ssh_user}"
+    ssh_username = "root"
 
     storage {
         disk_size = "10000"
@@ -101,15 +78,10 @@ source "vsphere-iso" "ubuntu" {
 
     username = "${var.vcenter_user}"
     vcenter_server = "${var.vcenter_host}"
-    vm_name = "Ubuntu-20.04-${legacy_isotime("2006-01-02")}"
+    vm_name = "Debian-11-${legacy_isotime("2006-01-02")}"
     vm_version = "15"
 }
 
 build {
-    sources = [ "source.vsphere-iso.ubuntu" ]
-
-    provisioner "shell" {
-        execute_command = "echo 'root' | {{ .Vars }} sudo -S -E bash '{{ .Path }}'"
-        script = "scripts/prep_ubuntu.sh"
-    }
+    sources = [ "source.vsphere-iso.debian" ]
 }

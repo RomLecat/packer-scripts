@@ -18,16 +18,16 @@ check_conf:
   script:
     - packer init -upgrade vcenter-windows.pkr.hcl 
     - packer init -upgrade vcenter-windows-server.pkr.hcl
-    - packer validate vcenter-arch.pkr.hcl
+    - packer validate vcenter-debian11.pkr.hcl
     - packer validate vcenter-windows.pkr.hcl
     - packer validate vcenter-windows-server.pkr.hcl
 
-build_arch:
+build_debian:
   image:
     name: hashicorp/packer:light
     entrypoint: [""]
   stage: build
-  script: packer build -force vcenter-arch.pkr.hcl
+  script: packer build -force vcenter-debian11.pkr.hcl
   rules:
     - if: $CI_PIPELINE_SOURCE == "schedule"
 
