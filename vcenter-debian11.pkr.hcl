@@ -53,7 +53,7 @@ source "vsphere-iso" "debian" {
     datacenter = "${var.dc}"
     datastore = "${var.storage}"
     disk_controller_type = [ "pvscsi" ]
-    firmware = "efi"
+    firmware = "efi-secure"
     folder = "${var.template_dir}"
     guest_os_type = "debian10_64Guest"
     insecure_connection = "true"
