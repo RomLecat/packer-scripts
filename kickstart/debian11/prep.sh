@@ -1,6 +1,6 @@
 #!/bin/bash
 
-apt remove -y avahi-daemon ifupdown
+apt autoremove -y avahi-daemon ifupdown fwupd
 sed -i 's/#PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/sudo-nopassword
 systemctl unmask systemd-timesyncd
