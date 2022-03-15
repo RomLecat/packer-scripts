@@ -4,6 +4,7 @@
 apt update
 apt install -y systemd/bullseye-backports systemd-timesyncd/bullseye-backports libnss-resolve/bullseye-backports linux-image-amd64/bullseye-backports
 systemctl enable systemd-networkd systemd-timesyncd systemd-resolved
+systemctl mask ifup@.service
 
 # Network
 sed -i 's/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 earlyprintk=ttyS0,115200 consoleblank=0"/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 earlyprintk=ttyS0,115200 consoleblank=0 net.ifnames=0"/g' /etc/default/grub

@@ -2,7 +2,7 @@
 
 apt autoremove -y avahi-daemon ifupdown fwupd
 sed -i 's/#PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config
-echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/sudo-nopassword
+echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/15-sudo-nopassword
 systemctl unmask systemd-timesyncd
 systemctl enable open-vm-tools systemd-networkd systemd-timesyncd systemd-resolved
 cat <<EOF > /etc/systemd/network/ens192.network
