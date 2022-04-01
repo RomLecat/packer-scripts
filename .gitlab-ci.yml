@@ -29,7 +29,8 @@ build_debian:
   stage: build
   script: packer build -force vcenter-debian11.pkr.hcl
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: never
 
 build_windows:
   image:
@@ -40,4 +41,5 @@ build_windows:
     - packer init -upgrade vcenter-windows-server.pkr.hcl
     - packer build -force vcenter-windows-server.pkr.hcl
   rules:
-    - if: $CI_PIPELINE_SOURCE == "schedule"
+    - if: $CI_PIPELINE_SOURCE == "push"
+      when: never
