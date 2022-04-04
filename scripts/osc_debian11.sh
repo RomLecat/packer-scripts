@@ -2,7 +2,7 @@
 
 # Upgrades
 apt update
-apt install -y systemd/bullseye-backports systemd-timesyncd/bullseye-backports libnss-resolve/bullseye-backports linux-image-amd64/bullseye-backports
+apt install -y systemd/bullseye-backports systemd-sysv/bullseye-backports systemd-timesyncd/bullseye-backports libnss-resolve/bullseye-backports linux-image-amd64/bullseye-backports
 systemctl enable systemd-networkd systemd-timesyncd systemd-resolved
 systemctl mask ifup@.service
 
