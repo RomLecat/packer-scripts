@@ -3,9 +3,9 @@ source "osc-bsu" "debian11" {
     omi_name = "Debian-11-RLT-${ formatdate("YYYY.MM.DD", timestamp()) }"
     source_omi_filter {
         filters = {
-            image-name = "Debian-11-2021.12.*"
+            image-name = "Debian-11-2022.05.*"
         }
-        owners = [ "Outscale" ]
+        owners = [ "Outscale", "self" ]
     }
     ssh_interface = "public_ip"
     ssh_username = "outscale"
