@@ -25,7 +25,7 @@ variable "ram_mb" {
 
 variable "storage" {
     type = string
-    default = "SAN"
+    default = "nas-nvme"
 }
 
 variable "template_dir" {
