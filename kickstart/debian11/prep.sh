@@ -6,7 +6,7 @@ echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/15-sudo-nopassword
 rm -f /etc/network/interfaces
 systemctl mask networking
 systemctl unmask systemd-timesyncd
-systemctl enable open-vm-tools systemd-networkd systemd-timesyncd systemd-resolved
+systemctl enable open-vm-tools systemd-networkd systemd-timesyncd systemd-resolved cloud-init
 cat <<EOF > /etc/systemd/network/ens192.network
 [Match]
 Name=ens192
