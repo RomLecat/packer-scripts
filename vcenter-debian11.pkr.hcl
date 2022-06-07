@@ -79,7 +79,7 @@ source "vsphere-iso" "debian" {
     username = "${var.vcenter_user}"
     vcenter_server = "${var.vcenter_host}"
     vm_name = "Debian-11-${legacy_isotime("2006-01-02")}"
-    vm_version = "15"
+    vm_version = "17"
 }
 
 build {
