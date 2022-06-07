@@ -15,7 +15,7 @@ variable "network" {
 
 variable "storage" {
     type = string
-    default = "SAN"
+    default = "nas-ssd"
 }
 
 variable "template_dir" {
