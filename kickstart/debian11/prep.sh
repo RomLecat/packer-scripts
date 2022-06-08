@@ -7,6 +7,7 @@ rm -f /etc/network/interfaces
 systemctl mask networking
 systemctl unmask systemd-timesyncd
 systemctl enable open-vm-tools systemd-networkd systemd-timesyncd systemd-resolved cloud-init
+
 cat <<EOF > /etc/systemd/network/ens192.network
 [Match]
 Name=ens192
@@ -18,7 +19,10 @@ MTUBytes=1500
 DHCP=yes
 IPv6LinkLocalAddressGenerationMode=eui64
 EOF
-cat <<EOF > /etc/cloud/cloud.cfg.d/10-network.cfg
+
+cat <<EOF > /etc/cloud/cloud.cfg.d/10_network.cfg
 network:
   config: disabled
 EOF
+
+echo "datasource_list: [ 'VMware' ]" > /etc/cloud/cloud.cfg.d/05_datasource.cfg
