@@ -55,7 +55,7 @@ source "vsphere-iso" "debian" {
     disk_controller_type = [ "pvscsi" ]
     firmware = "efi-secure"
     folder = "${var.template_dir}"
-    guest_os_type = "debian10_64Guest"
+    guest_os_type = "debian11_64Guest"
     insecure_connection = "true"
     iso_checksum = "file:https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA256SUMS"
     iso_urls = [ "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-11.3.0-amd64-netinst.iso" ]
@@ -79,7 +79,7 @@ source "vsphere-iso" "debian" {
     username = "${var.vcenter_user}"
     vcenter_server = "${var.vcenter_host}"
     vm_name = "Debian-11-${legacy_isotime("2006-01-02")}"
-    vm_version = "17"
+    vm_version = "19"
 }
 
 build {

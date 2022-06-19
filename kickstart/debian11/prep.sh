@@ -8,6 +8,7 @@ systemctl mask networking
 systemctl unmask systemd-timesyncd
 systemctl enable open-vm-tools systemd-networkd systemd-timesyncd systemd-resolved cloud-init
 
+# Basic network
 cat <<EOF > /etc/systemd/network/ens192.network
 [Match]
 Name=ens192
@@ -20,9 +21,13 @@ DHCP=yes
 IPv6LinkLocalAddressGenerationMode=eui64
 EOF
 
+# Setup Cloud-Init
 cat <<EOF > /etc/cloud/cloud.cfg.d/10_network.cfg
 network:
   config: disabled
 EOF
 
 echo "datasource_list: [ 'VMware' ]" > /etc/cloud/cloud.cfg.d/05_datasource.cfg
+
+# Set Debian as the only boot option
+efibootmgr -o 0003
