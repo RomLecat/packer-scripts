@@ -15,7 +15,7 @@ network:
   config: disabled
 EOF
 
-cat <<EOF > /etc/systemd/network/ens3.network
+cat <<EOF > /etc/systemd/network/eth0.network
 [Match]
 Name=ens3
 
