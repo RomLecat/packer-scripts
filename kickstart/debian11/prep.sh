@@ -1,14 +1,58 @@
 #!/bin/bash
 
+# Set apt preferences
+cat <<EOF > /etc/apt/preferences.d/90_default
+Package: *
+Pin: release a=stable
+Pin-Priority: 990
+
+Package: *
+Pin: release a=stable-updates
+Pin-Priority: 500
+
+Package: *
+Pin: release a=stable-security
+Pin-Priority: 500
+
+Package: *
+Pin: release o=Debian
+Pin-Priority: 50
+EOF
+
+cat <<EOF > /etc/apt/preferences.d/80_systemd
+Package: systemd
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
+Package: systemd-sysv
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
+Package: systemd-timesyncd
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
+Package: libnss-resolve linux-image-amd64
+Pin: release o=Debian Backports
+Pin-Priority: 990
+EOF
+
+# Upgrade
+apt upgrade -y
 apt autoremove -y avahi-daemon fwupd
+
+
+# Set sudo/root acls
 sed -i 's/#PermitRootLogin .*/PermitRootLogin yes/g' /etc/ssh/sshd_config
 echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/15-sudo-nopassword
-rm -f /etc/network/interfaces
+
+# Setup services
 systemctl mask networking
 systemctl unmask systemd-timesyncd
 systemctl enable open-vm-tools systemd-networkd systemd-timesyncd systemd-resolved cloud-init
 
 # Basic network
+rm -f /etc/network/interfaces
 cat <<EOF > /etc/systemd/network/ens192.network
 [Match]
 Name=ens192
@@ -31,22 +75,3 @@ echo "datasource_list: [ 'VMware' ]" > /etc/cloud/cloud.cfg.d/05_datasource.cfg
 
 # Set Debian as the only boot option
 efibootmgr -o 0003
-
-# Set apt preferences
-cat <<EOF > /etc/apt/preferences.d/00_stable
-Package: *
-Pin: release a=stable
-Pin-Priority: 900
- 
-Package: *
-Pin: release a=stable-updates
-Pin-Priority: 900
- 
-Package: *
-Pin: release a=proposed-updates
-Pin-Priority: 900
- 
-Package: *
-Pin: release o=Debian
-Pin-Priority: 50
-EOF

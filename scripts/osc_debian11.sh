@@ -1,27 +1,45 @@
 #!/bin/bash
 
 # Set apt preferences
-cat <<EOF > /etc/apt/preferences.d/00_stable
+cat <<EOF > /etc/apt/preferences.d/90_default
 Package: *
 Pin: release a=stable
-Pin-Priority: 900
- 
+Pin-Priority: 990
+
 Package: *
 Pin: release a=stable-updates
-Pin-Priority: 900
- 
+Pin-Priority: 500
+
 Package: *
-Pin: release a=proposed-updates
-Pin-Priority: 900
- 
+Pin: release a=stable-security
+Pin-Priority: 500
+
 Package: *
 Pin: release o=Debian
 Pin-Priority: 50
 EOF
 
+cat <<EOF > /etc/apt/preferences.d/80_systemd
+Package: systemd
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
+Package: systemd-sysv
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
+Package: systemd-timesyncd
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
+Package: libnss-resolve linux-image-amd64
+Pin: release o=Debian Backports
+Pin-Priority: 990
+EOF
+
 # Upgrade
 apt update
-apt install -y systemd/bullseye-backports systemd-sysv/bullseye-backports systemd-timesyncd/bullseye-backports libnss-resolve/bullseye-backports linux-image-amd64/bullseye-backports
+apt upgrade -y
 systemctl enable systemd-networkd systemd-timesyncd systemd-resolved
 systemctl mask networking
 
