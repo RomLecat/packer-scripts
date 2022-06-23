@@ -16,7 +16,7 @@ Pin-Priority: 900
  
 Package: *
 Pin: release o=Debian
-Pin-Priority: -10
+Pin-Priority: 50
 EOF
 
 # Upgrade
