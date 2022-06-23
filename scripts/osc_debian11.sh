@@ -1,6 +1,25 @@
 #!/bin/bash
 
-# Upgrades
+# Set apt preferences
+cat <<EOF > /etc/apt/preferences.d/00_stable
+Package: *
+Pin: release a=stable
+Pin-Priority: 900
+ 
+Package: *
+Pin: release a=stable-updates
+Pin-Priority: 900
+ 
+Package: *
+Pin: release a=proposed-updates
+Pin-Priority: 900
+ 
+Package: *
+Pin: release o=Debian
+Pin-Priority: -10
+EOF
+
+# Upgrade
 apt update
 apt install -y systemd/bullseye-backports systemd-sysv/bullseye-backports systemd-timesyncd/bullseye-backports libnss-resolve/bullseye-backports linux-image-amd64/bullseye-backports
 systemctl enable systemd-networkd systemd-timesyncd systemd-resolved

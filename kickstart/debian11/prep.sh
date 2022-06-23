@@ -31,3 +31,22 @@ echo "datasource_list: [ 'VMware' ]" > /etc/cloud/cloud.cfg.d/05_datasource.cfg
 
 # Set Debian as the only boot option
 efibootmgr -o 0003
+
+# Set apt preferences
+cat <<EOF > /etc/apt/preferences.d/00_stable
+Package: *
+Pin: release a=stable
+Pin-Priority: 900
+ 
+Package: *
+Pin: release a=stable-updates
+Pin-Priority: 900
+ 
+Package: *
+Pin: release a=proposed-updates
+Pin-Priority: 900
+ 
+Package: *
+Pin: release o=Debian
+Pin-Priority: -10
+EOF
