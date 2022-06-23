@@ -72,6 +72,3 @@ network:
 EOF
 
 echo "datasource_list: [ 'VMware' ]" > /etc/cloud/cloud.cfg.d/05_datasource.cfg
-
-# Set Debian as the only boot option
-efibootmgr -o 0003
