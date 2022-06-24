@@ -32,7 +32,7 @@ Package: systemd-timesyncd
 Pin: release o=Debian Backports
 Pin-Priority: 990
 
-Package: libnss-resolve linux-image-amd64
+Package: linux-image-amd64
 Pin: release o=Debian Backports
 Pin-Priority: 990
 EOF
