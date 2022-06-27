@@ -43,7 +43,7 @@ source "vsphere-iso" "debian" {
     RAM = "2048"
     RAM_reserve_all = true
     boot_command = [ 
-        "e<down><down><down><end>",
+        "<down>e<down><down><down><end>",
         "priority=critical auto=true preseed/url=https://oos.eu-west-2.outscale.com/homelab/packer_ks/debian11/preseed.cfg",
         "<leftCtrlOn>x<leftCtrlOff>"
     ]
