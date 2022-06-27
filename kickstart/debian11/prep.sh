@@ -17,9 +17,14 @@ Pin-Priority: 500
 Package: *
 Pin: release o=Debian
 Pin-Priority: 50
+
 EOF
 
 cat <<EOF > /etc/apt/preferences.d/80_systemd
+Package: libsystemd0
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
 Package: systemd
 Pin: release o=Debian Backports
 Pin-Priority: 990
@@ -32,13 +37,26 @@ Package: systemd-timesyncd
 Pin: release o=Debian Backports
 Pin-Priority: 990
 
+Package: libnss-systemd
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
+Package: libpam-systemd
+Pin: release o=Debian Backports
+Pin-Priority: 990
+
+EOF
+
+cat <<EOF > /etc/apt/preferences.d/80_kernel
 Package: linux-image-amd64
 Pin: release o=Debian Backports
 Pin-Priority: 990
+
 EOF
 
 # Upgrade
-apt upgrade -y
+apt update
+apt dist-upgrade -y
 apt autoremove -y avahi-daemon fwupd
 
 
