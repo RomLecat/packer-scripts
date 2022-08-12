@@ -10,12 +10,12 @@ variable "cpu_cores" {
 
 variable "dc" {
     type = string
-    default = "Home"
+    default = "LCT1"
 }
 
 variable "network" {
     type = string
-    default = "SEC-PROVI"
+    default = "INT-PROVI"
 }
 
 variable "ram_mb" {
@@ -25,7 +25,7 @@ variable "ram_mb" {
 
 variable "storage" {
     type = string
-    default = "nas-nvme"
+    default = "hv2-ssd"
 }
 
 variable "template_dir" {

@@ -5,17 +5,17 @@ variable "cluster" {
 
 variable "dc" {
     type = string
-    default = "Home"
+    default = "LCT1"
 }
 
 variable "network" {
     type = string
-    default = "SEC-PROVI"
+    default = "INT-PROVI"
 }
 
 variable "storage" {
     type = string
-    default = "nas-ssd"
+    default = "hv2-ssd"
 }
 
 variable "template_dir" {
