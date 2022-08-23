@@ -76,6 +76,10 @@ source "vsphere-iso" "debian" {
         disk_thin_provisioned = true
     }
 
+    configuration_parameters = {
+        "efi.quickBoot.enabled" = "FALSE"
+    }
+
     username = "${var.vcenter_user}"
     vcenter_server = "${var.vcenter_host}"
     vm_name = "Debian-11-${legacy_isotime("2006-01-02")}"
