@@ -1,11 +1,21 @@
-source "osc-bsu" "debian11" {
+packer {
+    required_plugins {
+        outscale = {
+            version = ">= 1.0.3"
+            source  = "github.com/outscale/outscale"
+        }
+    }
+}
+
+source "outscale-bsu" "debian11" {
     force_deregister = true
     omi_name = "Debian-11-RLT-${ formatdate("YYYY.MM.DD", timestamp()) }"
     source_omi_filter {
         filters = {
-            image-name = "Debian-11-2022.05.*"
+            image-name = "Debian-11-*"
         }
-        owners = [ "Outscale", "self" ]
+        owners = [ "Outscale" ]
+        most_recent = "true"
     }
     ssh_interface = "public_ip"
     ssh_username = "outscale"
@@ -13,7 +23,7 @@ source "osc-bsu" "debian11" {
 }
 
 build {
-    sources = [ "source.osc-bsu.debian11" ]
+    sources = [ "source.outscale-bsu.debian11" ]
 
     provisioner "shell" {
         execute_command = "chmod +x {{ .Path }}; {{ .Vars }} sudo -E -S bash -x '{{ .Path }}'"
