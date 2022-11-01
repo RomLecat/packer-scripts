@@ -15,7 +15,7 @@ variable "network" {
 
 variable "storage" {
     type = string
-    default = "hv2-ssd"
+    default = "vSAN"
 }
 
 variable "template_dir" {
