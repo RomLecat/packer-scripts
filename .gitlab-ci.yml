@@ -16,6 +16,7 @@ check_conf:
     entrypoint: [""]
   stage: preparation
   script:
+    - packer init -upgrade osc-debian11.pkr.hcl
     - packer init -upgrade vcenter-windows.pkr.hcl 
     - packer init -upgrade vcenter-windows-server.pkr.hcl
     - packer validate vcenter-debian11.pkr.hcl
@@ -41,3 +42,14 @@ build_windows:
     - packer build -force vcenter-windows-server.pkr.hcl
   rules:
     - if: $CI_PIPELINE_SOURCE != "push"
+
+build_debian_osc:
+  image: hashicorp/packer:light
+  entrypoint: [""]
+  stage: build
+  script: packer build -force osc-debian11.pkr.hcl
+  rules:
+    - if: $CI_PIPELINE_SOURCE != "push"
+  parallel:
+    matrix:
+      - OSC_REGION: [ 'eu-west-2', 'us-east-2', 'us-west-1', 'ap-northeast-1', 'cloudgouv-eu-west-1' ]
