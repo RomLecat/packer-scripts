@@ -68,7 +68,7 @@ apt install -y systemd-timesyncd
 apt upgrade -y
 apt autoremove -y
 systemctl enable --now systemd-networkd systemd-timesyncd systemd-resolved
-systemctl mask networking
+systemctl mask networking ifup@.service ifup@eth0.service
 
 # Network
 sed -i "s/GRUB_CMDLINE_LINUX=\"\(.*\)\"/GRUB_CMDLINE_LINUX=\"\1 net.ifnames=0\"/" /etc/default/grub

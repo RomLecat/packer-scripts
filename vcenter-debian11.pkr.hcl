@@ -43,17 +43,19 @@ source "vsphere-iso" "debian" {
     RAM = "2048"
     RAM_reserve_all = true
     boot_command = [ 
-        "<down>e<down><down><down><end>",
-        "priority=critical auto=true preseed/url=https://oos.eu-west-2.outscale.com/homelab/packer_ks/debian11/preseed.cfg",
+        "e<down><down><down><end> ",
+        "priority=critical auto=true hostname=debian domain= preseed/url=https://oos.eu-west-2.outscale.com/homelab/packer_ks/debian11/preseed.cfg",
         "<leftCtrlOn>x<leftCtrlOff>"
     ]
-    boot_wait = "5s"
+    boot_wait = "8s"
     cluster = "${var.cluster}"
     convert_to_template = true
     datacenter = "${var.dc}"
     datastore = "${var.storage}"
     disk_controller_type = [ "pvscsi" ]
     firmware = "efi-secure"
+    cdrom_type = "sata"
+    usb_controller = [ "xhci" ]
     folder = "${var.template_dir}"
     guest_os_type = "debian11_64Guest"
     insecure_connection = "true"

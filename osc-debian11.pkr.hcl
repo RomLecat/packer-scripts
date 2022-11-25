@@ -19,7 +19,7 @@ source "outscale-bsu" "debian11" {
     }
     ssh_interface = "public_ip"
     ssh_username = "outscale"
-    vm_type = "tinav4.c2r2p3"
+    vm_type = "tinav5.c2r2p2"
 }
 
 build {
