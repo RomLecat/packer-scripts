@@ -44,8 +44,9 @@ build_windows:
     - if: $CI_PIPELINE_SOURCE != "push"
 
 build_debian_osc:
-  image: hashicorp/packer:light
-  entrypoint: [""]
+  image: 
+    name: hashicorp/packer:light
+    entrypoint: [""]
   stage: build
   script: packer build -force osc-debian11.pkr.hcl
   rules:
