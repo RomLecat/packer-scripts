@@ -21,27 +21,7 @@ Pin-Priority: 50
 EOF
 
 cat <<EOF > /etc/apt/preferences.d/80_systemd
-Package: libsystemd0
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: systemd
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: systemd-sysv
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: systemd-timesyncd
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: libnss-systemd
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: libpam-systemd
+Package: systemd libsystemd0 systemd-sysv systemd-resolved systemd-timesyncd libnss-systemd libpam-systemd
 Pin: release o=Debian Backports
 Pin-Priority: 990
 
@@ -57,6 +37,7 @@ EOF
 # Upgrade
 apt update
 apt dist-upgrade -y
+apt install -y systemd-resolved
 apt autoremove -y avahi-daemon fwupd
 
 
