@@ -23,41 +23,13 @@ Pin-Priority: 50
 EOF
 
 cat <<EOF > /etc/apt/preferences.d/80_kernel
-Package: linux-image-amd64
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: linux-image-cloud-amd64
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: linux-headers-amd64
+Package: linux-image-amd64 linux-image-cloud-amd64 linux-headers-amd64
 Pin: release o=Debian Backports
 Pin-Priority: 990
 EOF
 
 cat <<EOF > /etc/apt/preferences.d/80_systemd
-Package: libsystemd0
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: systemd
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: systemd-sysv
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: systemd-timesyncd
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: libnss-systemd
-Pin: release o=Debian Backports
-Pin-Priority: 990
-
-Package: libpam-systemd
+Package: libsystemd0 systemd systemd-sysv systemd-timesyncd systemd-resolved libnss-systemd libpam-systemd
 Pin: release o=Debian Backports
 Pin-Priority: 990
 EOF
@@ -97,4 +69,4 @@ echo '%sudo ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/sudo-nopassword
 # Cleanup
 rm -f /etc/network/interfaces
 rm -f /etc/sudoers.d/90-cloud-init-users
-echo > /home/outscale/.ssh/authorized_keys 
+echo > /home/outscale/.ssh/authorized_keys
