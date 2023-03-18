@@ -36,7 +36,7 @@ EOF
 
 # Upgrade
 apt update
-apt install -y systemd-timesyncd
+apt install -y systemd-timesyncd systemd-resolved
 apt upgrade -y
 apt autoremove -y
 systemctl enable --now systemd-networkd systemd-timesyncd systemd-resolved
